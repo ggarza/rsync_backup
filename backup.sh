@@ -25,10 +25,7 @@ do
         if [ $folder == "$MOUNTFOLDER/$name" ]
         then
             date=`date "+%Y-%m-%d-%H%M%S"`
-            $RSYNC $RSYNCOPT --link-dest=$BACKUPFOLDER/current $IMPORTANT_FOLDER $BACKUPFOLDER/back-${date}_incomplete --log-file=$BACKUPFOLDER/$name.log
-            mv $BACKUPFOLDER/back-${date}_incomplete $BACKUPFOLDER/back-${date}
-            rm -f $BACKUPFOLDER/current
-            ln -s $BACKUPFOLDER/back-$date $BACKUPFOLDER/current
+            $RSYNC $RSYNCOPT --link-dest=$BACKUPFOLDER/current $IMPORTANT_FOLDER $BACKUPFOLDER/back-${date}_incomplete --log-file=$BACKUPFOLDER/$name.log && mv $BACKUPFOLDER/back-${date}_incomplete $BACKUPFOLDER/back-${date} && rm -f $BACKUPFOLDER/current && ln -s $BACKUPFOLDER/back-$date $BACKUPFOLDER/current
         fi
     done
 done
