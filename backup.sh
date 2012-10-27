@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Based on the following posts
+# http://www.batchworks.de/automatic-backup-of-usb-flashdrives-with-a-folder-action
+# /http://blog.interlinked.org/tutorials/rsync_time_machine.html
+
 USBNAMES=(GRRRMO_BP)
 RSYNC=/usr/local/bin/rsync
 RSYNCOPT=-aP
