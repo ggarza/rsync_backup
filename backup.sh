@@ -13,10 +13,10 @@ MOUNTFOLDER=/Volumes
 MOUNTS=( $MOUNTFOLDER/* )
 
 # create backup folder if missing
-# if [ ! -d $BACKUPFOLDER ]
-#    then
-#         mkdir -p $BACKUPFOLDER
-# fi 
+if [ ! -d $BACKUPFOLDER ]
+   then
+        mkdir -p $BACKUPFOLDER
+fi 
 
 for folder in $MOUNTS
 do
