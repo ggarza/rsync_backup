@@ -24,7 +24,7 @@ do
     do
         if [ $folder == "$MOUNTFOLDER/$name" ]
         then
-            date=`date "+%Y-%m-%d_%H:%M:%S"`
+            date=`date "+%Y-%m-%d-%H%M%S"`
             $RSYNC $RSYNCOPT --link-dest=$BACKUPFOLDER/current $IMPORTANT_FOLDER $BACKUPFOLDER/back-$date --log-file=$BACKUPFOLDER/$name.log
             rm -f $BACKUPFOLDER/current
             ln -s $BACKUPFOLDER/back-$date $BACKUPFOLDER/current
