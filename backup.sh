@@ -12,11 +12,6 @@ IMPORTANT_FOLDER=~/Dropbox/Teaching
 MOUNTFOLDER=/Volumes
 MOUNTS=( $MOUNTFOLDER/* )
 
-# create backup folder if missing
-if [ ! -d $BACKUPFOLDER ]
-   then
-        mkdir -p $BACKUPFOLDER
-fi 
 
 for folder in $MOUNTS
 do
@@ -24,6 +19,12 @@ do
     do
         if [ $folder == "$MOUNTFOLDER/$name" ]
         then
+            # create backup folder if missing
+            if [ ! -d $BACKUPFOLDER ]
+            then
+                mkdir -p $BACKUPFOLDER
+            fi
+
             date=`date "+%Y-%m-%d-%H%M%S"`
             $RSYNC $RSYNCOPT --link-dest=$BACKUPFOLDER/current $IMPORTANT_FOLDER $BACKUPFOLDER/back-${date}_incomplete --log-file=$BACKUPFOLDER/$name.log && mv $BACKUPFOLDER/back-${date}_incomplete $BACKUPFOLDER/back-${date} && rm -f $BACKUPFOLDER/current && ln -s $BACKUPFOLDER/back-$date $BACKUPFOLDER/current
         fi
