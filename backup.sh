@@ -17,6 +17,9 @@ RSYNCOPT=-aP
 
 date=`date "+%Y-%m-%d-%H%M%S"`
 
+LINK=$BACKUPFOLDER/current
+TARGET_INC=$BACKUPFOLDER/back-${date}_incomplete
+
 for folder in $MOUNTS
 do
     for name in $USBNAMES
@@ -29,7 +32,7 @@ do
                 mkdir -p $BACKUPFOLDER
             fi
 
-            $RSYNC $RSYNCOPT --link-dest=$BACKUPFOLDER/current $IMPORTANT_FOLDER $BACKUPFOLDER/back-${date}_incomplete --log-file=$BACKUPFOLDER/$name.log && mv $BACKUPFOLDER/back-${date}_incomplete $BACKUPFOLDER/back-${date} && rm -f $BACKUPFOLDER/current && ln -s $BACKUPFOLDER/back-$date $BACKUPFOLDER/current
+            $RSYNC $RSYNCOPT --link-dest=$LINK $IMPORTANT_FOLDER $TARGET_INC --log-file=$BACKUPFOLDER/$name.log && mv $BACKUPFOLDER/back-${date}_incomplete $BACKUPFOLDER/back-${date} && rm -f $BACKUPFOLDER/current && ln -s $BACKUPFOLDER/back-$date $BACKUPFOLDER/current
         fi
     done
 done
