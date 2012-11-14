@@ -30,12 +30,3 @@ do
         fi
     done
 done
-
-
-
-
-# 
-# date=`date "+%Y-%m-%d_%H:%M:%S"`
-# $RSYNC $RSYNCOPT --link-dest=$BACKUPFOLDER/current $IMPORTANT_FOLDER $BACKUPFOLDER/back-$date
-# rm -f $BACKUPFOLDER/current
-# ln -s $BACKUPFOLDER/back-$date $BACKUPFOLDER/current
