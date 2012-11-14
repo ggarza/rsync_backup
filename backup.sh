@@ -17,9 +17,10 @@ date=`date "+%Y-%m-%d-%H%M%S"`
 
 LINK=$BACKUPFOLDER/current
 TARGET_INC=$BACKUPFOLDER/back-${date}_incomplete
+TARGET_FINAL=$BACKUPFOLDER/back-${date}
 
 RSYNC=/usr/local/bin/rsync
-RSYNCOPT=-aP --log-file=$BACKUPFOLDER/backup.log 
+RSYNCOPT="-aP --log-file=$BACKUPFOLDER/backup.log  --link-dest=$LINK"
 
 for folder in $MOUNTS
 do
@@ -33,7 +34,7 @@ do
                 mkdir -p $BACKUPFOLDER
             fi
 
-            $RSYNC $RSYNCOPT --link-dest=$LINK $IMPORTANT_FOLDER $TARGET_INC && mv $BACKUPFOLDER/back-${date}_incomplete $BACKUPFOLDER/back-${date} && rm -f $BACKUPFOLDER/current && ln -s $BACKUPFOLDER/back-$date $BACKUPFOLDER/current
+            $RSYNC $RSYNCOPT $IMPORTANT_FOLDER $TARGET_INC && mv $TARGET_INC $TARGET_FINAL && rm -f $LINK  && ln -s $TARGET_FINAL $LINK      
         fi
     done
 done
