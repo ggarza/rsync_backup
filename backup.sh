@@ -8,11 +8,14 @@ BACKUPFOLDER=/Volumes/GRRRMO_BP/Dropbox_Teaching
 IMPORTANT_FOLDER=~/Dropbox/Teaching
 
 USBNAMES=(GRRRMO_BP)
-RSYNC=/usr/local/bin/rsync
-RSYNCOPT=-aP
+
 MOUNTFOLDER=/Volumes
 MOUNTS=( $MOUNTFOLDER/* )
 
+RSYNC=/usr/local/bin/rsync
+RSYNCOPT=-aP
+
+date=`date "+%Y-%m-%d-%H%M%S"`
 
 for folder in $MOUNTS
 do
@@ -26,7 +29,6 @@ do
                 mkdir -p $BACKUPFOLDER
             fi
 
-            date=`date "+%Y-%m-%d-%H%M%S"`
             $RSYNC $RSYNCOPT --link-dest=$BACKUPFOLDER/current $IMPORTANT_FOLDER $BACKUPFOLDER/back-${date}_incomplete --log-file=$BACKUPFOLDER/$name.log && mv $BACKUPFOLDER/back-${date}_incomplete $BACKUPFOLDER/back-${date} && rm -f $BACKUPFOLDER/current && ln -s $BACKUPFOLDER/back-$date $BACKUPFOLDER/current
         fi
     done
