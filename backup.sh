@@ -4,11 +4,12 @@
 # http://www.batchworks.de/automatic-backup-of-usb-flashdrives-with-a-folder-action
 # /http://blog.interlinked.org/tutorials/rsync_time_machine.html
 
+BACKUPFOLDER=/Volumes/GRRRMO_BP/Dropbox_Teaching
+IMPORTANT_FOLDER=~/Dropbox/Teaching
+
 USBNAMES=(GRRRMO_BP)
 RSYNC=/usr/local/bin/rsync
 RSYNCOPT=-aP
-BACKUPFOLDER=/Volumes/GRRRMO_BP/Dropbox_Teaching
-IMPORTANT_FOLDER=~/Dropbox/Teaching
 MOUNTFOLDER=/Volumes
 MOUNTS=( $MOUNTFOLDER/* )
 
